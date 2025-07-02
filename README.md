@@ -44,6 +44,7 @@ You can fork this repository to create your own working environment, track your 
 After completing or making progress on an assignment, use the following command to test your solution locally:
 ```bash
 python3 ok -q <file_name> --local
+python ok -q(问题名称) --local
 ```
 Replace `<file_name>` with the name of the specific file you want to test.
 

@@ -1,5 +1,5 @@
 from operator import add, mul
-
+from typing import Callable
 square = lambda x: x * x
 
 identity = lambda x: x
@@ -32,9 +32,14 @@ def product(n, term):
     162
     """
     "*** YOUR CODE HERE ***"
+    k = 1
+    product = 1
+    while k <= n:
+        product *= term(k)
+        k += 1
+    return product
 
-
-def accumulate(fuse, start, n, term):
+def accumulate(fuse : Callable[[float], float], start, n, term):
     """Return the result of fusing together the first n terms in a sequence 
     and start.  The terms to be fused are term(1), term(2), ..., term(n). 
     The function fuse is a two-argument commutative & associative function.
