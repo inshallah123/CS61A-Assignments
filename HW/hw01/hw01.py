@@ -1,5 +1,9 @@
 from operator import add, sub
 
+def square(x):
+    return x * x
+
+
 def a_plus_abs_b(a, b):
     """Return a+abs(b), but without calling abs.
 
@@ -13,9 +17,9 @@ def a_plus_abs_b(a, b):
     3
     """
     if b < 0:
-        f = sum(a, -b)
+        f = sub
     else:
-        f = sum(a, b)
+        f = add
     return f(a, b)
 
 def a_plus_abs_b_syntax_check():
@@ -42,7 +46,7 @@ def two_of_three(i, j, k):
     >>> two_of_three(5, 5, 5)
     50
     """
-    return _____
+    return square(sorted([i, j, k])[0]) + square(sorted([i, j, k])[1])
 
 def two_of_three_syntax_check():
     """Check that your two_of_three code consists of nothing but a return statement.
@@ -66,12 +70,19 @@ def largest_factor(n):
     1
     """
     "*** YOUR CODE HERE ***"
+    factors = [x for x in range(1, n + 1) if n % x == 0 and x < n]
+    return max(factors)
 
 
 def hailstone(n):
-    """Print the hailstone sequence starting at n and return its
+    """Print the hailstone sequence(冰雹序列，Collatz序列） starting at n and return its
     length.
-
+生成规则：
+初始值：选择一个正整数 n 作为序列的起点。
+递推规则：
+如果当前数 n 是偶数，则下一个数为 n/2；
+如果当前数 n 是奇数，则下一个数为 3n+1。
+终止条件：当序列达到数字 1 时结束（因为之后会进入无限循环 1→4→2→1）。
     >>> a = hailstone(10)
     10
     5
@@ -88,4 +99,19 @@ def hailstone(n):
     1
     """
     "*** YOUR CODE HERE ***"
+    loop_time = 0
+    print(int(n))
+    while n > 1:
+        if n % 2 == 0:
+            n = n // 2
+            print(int(n))
+            loop_time += 1
+            continue
+        else:
+            n = 3 * n + 1
+            print(int(n))
+            loop_time += 1
+            continue
+    return loop_time + 1
+
 
