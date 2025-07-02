@@ -362,7 +362,7 @@ class Connection:
                 Special case: If *data* is an empty byte-string like ``b""``,
                 then this indicates that the remote side has closed the
                 connection (end of file). Normally this is convenient, because
-                standard Python APIs like :meth:`file.read` or
+                standard Python-CS61A APIs like :meth:`file.read` or
                 :meth:`socket.recv` use ``b""`` to indicate end-of-file, while
                 other failures to read are indicated using other mechanisms
                 like raising :exc:`TimeoutError`. When using such an API you

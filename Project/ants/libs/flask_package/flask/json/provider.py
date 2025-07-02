@@ -122,7 +122,7 @@ def _default(o: t.Any) -> t.Any:
 
 
 class DefaultJSONProvider(JSONProvider):
-    """Provide JSON operations using Python's built-in :mod:`json`
+    """Provide JSON operations using Python-CS61A's built-in :mod:`json`
     library. Serializes the following additional data types:
 
     -   :class:`datetime.datetime` and :class:`datetime.date` are

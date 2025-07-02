@@ -139,7 +139,7 @@ class Pair:
         return self.first == p.first and self.rest == p.rest
 
     def map(self, fn):
-        """Return a Scheme list after mapping Python function FN to SELF."""
+        """Return a Scheme list after mapping Python-CS61A function FN to SELF."""
         mapped = fn(self.first)
         if self.rest is nil or isinstance(self.rest, Pair):
             return Pair(mapped, self.rest.map(fn))

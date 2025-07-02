@@ -455,7 +455,7 @@ class Signal:
         for example in most web apps, Flask, CLI scripts, etc., are not
         adversely affected by this bookkeeping.
 
-        With a long-running Python process performing dynamic signal routing
+        With a long-running Python-CS61A process performing dynamic signal routing
         with high volume- e.g. connecting to function closures, "senders" are
         all unique object instances, and doing all of this over and over- you
         may see memory usage will grow due to extraneous bookkeeping. (An empty

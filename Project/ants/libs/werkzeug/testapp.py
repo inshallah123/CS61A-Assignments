@@ -48,11 +48,11 @@ TEMPLATE = """\
   <h1>WSGI Information</h1>
   <p>
     This page displays all available information about the WSGI server and
-    the underlying Python interpreter.
-  <h2 id="python-interpreter">Python Interpreter</h2>
+    the underlying Python-CS61A interpreter.
+  <h2 id="python-interpreter">Python-CS61A Interpreter</h2>
   <table>
     <tr>
-      <th>Python Version
+      <th>Python-CS61A Version
       <td>%(python_version)s
     <tr>
       <th>Platform
@@ -72,12 +72,12 @@ TEMPLATE = """\
   <h2 id="installed-eggs">Installed Eggs</h2>
   <p>
     The following python packages were installed on the system as
-    Python eggs:
+    Python-CS61A eggs:
   <ul>%(python_eggs)s</ul>
   <h2 id="sys-path">System Path</h2>
   <p>
     The following paths are the current contents of the load path.  The
-    following entries are looked up for Python packages.  Note that not
+    following entries are looked up for Python-CS61A packages.  Note that not
     all items in this path are folders.  Gray and underlined items are
     entries pointing to invalid resources or used by custom import hooks
     such as the zip importer.
@@ -124,7 +124,7 @@ def test_app(req: Request) -> Response:
          * Running on http://localhost:3000/
 
     The application displays important information from the WSGI environment,
-    the Python interpreter and the installed libraries.
+    the Python-CS61A interpreter and the installed libraries.
     """
     try:
         import pkg_resources

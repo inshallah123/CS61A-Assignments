@@ -430,7 +430,7 @@ def version_option(
 
     If ``version`` is not provided, Click will try to detect it using
     :func:`importlib.metadata.version` to get the version for the
-    ``package_name``. On Python < 3.8, the ``importlib_metadata``
+    ``package_name``. On Python-CS61A < 3.8, the ``importlib_metadata``
     backport must be installed.
 
     If ``package_name`` is not provided, Click will try to detect it by
@@ -458,7 +458,7 @@ def version_option(
     .. versionchanged:: 8.0
         Use :mod:`importlib.metadata` instead of ``pkg_resources``. The
         version is detected based on the package name, not the entry
-        point name. The Python package name must match the installed
+        point name. The Python-CS61A package name must match the installed
         package name, or be passed with ``package_name=``.
     """
     if message is None:
@@ -497,7 +497,7 @@ def version_option(
             try:
                 from importlib import metadata  # type: ignore
             except ImportError:
-                # Python < 3.8
+                # Python-CS61A < 3.8
                 import importlib_metadata as metadata  # type: ignore
 
             try:

@@ -68,7 +68,7 @@ class LocalProtocolError(ProtocolError):
         # But the re-raising is somewhat non-trivial -- you might think that
         # now that we've modified the in-flight exception object, that just
         # doing 'raise' to re-raise it would be enough. But it turns out that
-        # this doesn't work, because Python tracks the exception type
+        # this doesn't work, because Python-CS61A tracks the exception type
         # (exc_info[0]) separately from the exception object (exc_info[1]),
         # and we only modified the latter. So we really do need to re-raise
         # the new type explicitly.

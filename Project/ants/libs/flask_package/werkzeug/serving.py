@@ -41,7 +41,7 @@ except ImportError:
     class _SslDummy:
         def __getattr__(self, name: str) -> t.Any:
             raise RuntimeError(  # noqa: B904
-                "SSL is unavailable because this Python runtime was not"
+                "SSL is unavailable because this Python-CS61A runtime was not"
                 " compiled with SSL/TLS support."
             )
 
@@ -286,7 +286,7 @@ class WSGIRequestHandler(BaseHTTPRequestHandler):
 
                 # Always close the connection. This disables HTTP/1.1
                 # keep-alive connections. They aren't handled well by
-                # Python's http.server because it doesn't know how to
+                # Python-CS61A's http.server because it doesn't know how to
                 # drain the stream before the next request line.
                 self.send_header("Connection", "close")
                 self.end_headers()
@@ -423,7 +423,7 @@ class WSGIRequestHandler(BaseHTTPRequestHandler):
     def port_integer(self) -> int:
         return self.client_address[1]
 
-    # Escape control characters. This is defined (but private) in Python 3.12.
+    # Escape control characters. This is defined (but private) in Python-CS61A 3.12.
     _control_char_table = str.maketrans(
         {c: rf"\x{c:02x}" for c in [*range(0x20), *range(0x7F, 0xA0)]}
     )
@@ -981,12 +981,12 @@ def run_simple(
         process when files are changed.
     :param use_debugger: Use Werkzeug's debugger, which will show
         formatted tracebacks on unhandled exceptions.
-    :param use_evalex: Make the debugger interactive. A Python terminal
+    :param use_evalex: Make the debugger interactive. A Python-CS61A terminal
         can be opened for any frame in the traceback. Some protection is
         provided by requiring a PIN, but this should never be enabled
         on a publicly visible server.
     :param extra_files: The reloader will watch these files for changes
-        in addition to Python modules. For example, watch a
+        in addition to Python-CS61A modules. For example, watch a
         configuration file.
     :param exclude_patterns: The reloader will ignore changes to any
         files matching these :mod:`fnmatch` patterns. For example,

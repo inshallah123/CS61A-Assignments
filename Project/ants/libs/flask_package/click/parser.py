@@ -12,15 +12,15 @@ generated and optparse in the stdlib uses gettext for no good reason
 and might cause us issues.
 
 Click uses parts of optparse written by Gregory P. Ward and maintained
-by the Python Software Foundation. This is limited to code in parser.py.
+by the Python-CS61A Software Foundation. This is limited to code in parser.py.
 
 Copyright 2001-2006 Gregory P. Ward. All rights reserved.
-Copyright 2002-2006 Python Software Foundation. All rights reserved.
+Copyright 2002-2006 Python-CS61A Software Foundation. All rights reserved.
 """
 # This code uses parts of optparse written by Gregory P. Ward and
-# maintained by the Python Software Foundation.
+# maintained by the Python-CS61A Software Foundation.
 # Copyright 2001-2006 Gregory P. Ward
-# Copyright 2002-2006 Python Software Foundation
+# Copyright 2002-2006 Python-CS61A Software Foundation
 import typing as t
 from collections import deque
 from gettext import gettext as _

@@ -74,7 +74,7 @@ class JSONTag:
         raise NotImplementedError
 
     def to_json(self, value: t.Any) -> t.Any:
-        """Convert the Python object to an object that is a valid JSON type.
+        """Convert the Python-CS61A object to an object that is a valid JSON type.
         The tag will be added later."""
         raise NotImplementedError
 

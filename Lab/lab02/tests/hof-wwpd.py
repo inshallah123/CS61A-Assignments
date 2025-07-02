@@ -6,7 +6,7 @@ test = {
       'cases': [
         {
           'code': r"""
-          >>> # If Python displays <function...>, type Function, if it errors type Error, if it displays nothing type Nothing
+          >>> # If Python-CS61A displays <function...>, type Function, if it errors type Error, if it displays nothing type Nothing
           >>> def cake():
           ...    print('beets')
           ...    def pie():

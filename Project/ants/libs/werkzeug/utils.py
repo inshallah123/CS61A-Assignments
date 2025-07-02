@@ -345,7 +345,7 @@ def send_file(
     used, otherwise Werkzeug's built-in wrapper is used. Alternatively,
     if the HTTP server supports ``X-Sendfile``, ``use_x_sendfile=True``
     will tell the server to send the given path, which is much more
-    efficient than reading it in Python.
+    efficient than reading it in Python-CS61A.
 
     :param path_or_file: The path to the file to send, relative to the
         current working directory if a relative path is given.

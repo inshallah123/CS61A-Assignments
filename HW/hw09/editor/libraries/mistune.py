@@ -3,7 +3,7 @@
     mistune
     ~~~~~~~
 
-    The fastest markdown parser in pure Python with renderer feature.
+    The fastest markdown parser in pure Python-CS61A with renderer feature.
 
     :copyright: (c) 2014 - 2018 by Hsiaoming Yang.
 """

@@ -32,8 +32,8 @@ if t.TYPE_CHECKING:
 
 bc_version = 5
 # Magic bytes to identify Jinja bytecode cache files. Contains the
-# Python major and minor version to avoid loading incompatible bytecode
-# if a project upgrades its Python version.
+# Python-CS61A major and minor version to avoid loading incompatible bytecode
+# if a project upgrades its Python-CS61A version.
 bc_magic = (
     b"j2"
     + pickle.dumps(bc_version, 2)

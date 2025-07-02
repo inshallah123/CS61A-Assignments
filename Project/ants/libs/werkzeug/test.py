@@ -1303,7 +1303,7 @@ class TestResponse(Response):
 
     If the test request included large files, or if the application is
     serving a file, call :meth:`close` to close any open files and
-    prevent Python showing a ``ResourceWarning``.
+    prevent Python-CS61A showing a ``ResourceWarning``.
 
     .. versionchanged:: 2.2
         Set the ``default_mimetype`` to None to prevent a mimetype being

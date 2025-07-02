@@ -233,7 +233,7 @@ class App(Scaffold):
     the app.
 
     The default, :class:`~flask.json.provider.DefaultJSONProvider`, uses
-    Python's built-in :mod:`json` library. A different provider can use
+    Python-CS61A's built-in :mod:`json` library. A different provider can use
     a different JSON library.
 
     .. versionadded:: 2.2
@@ -336,7 +336,7 @@ class App(Scaffold):
         attribute afterwards.
 
         The default, :class:`~flask.json.provider.DefaultJSONProvider`,
-        uses Python's built-in :mod:`json` library. A different provider
+        uses Python-CS61A's built-in :mod:`json` library. A different provider
         can use a different JSON library.
 
         .. versionadded:: 2.2
@@ -445,7 +445,7 @@ class App(Scaffold):
 
     @cached_property
     def logger(self) -> logging.Logger:
-        """A standard Python :class:`~logging.Logger` for the app, with
+        """A standard Python-CS61A :class:`~logging.Logger` for the app, with
         the same name as :attr:`name`.
 
         In debug mode, the logger's :attr:`~logging.Logger.level` will

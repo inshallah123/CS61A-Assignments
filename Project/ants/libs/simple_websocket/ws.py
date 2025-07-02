@@ -320,15 +320,15 @@ class Server(Base):
                                  is ``None``.
         :param thread_class: The ``Thread`` class to use when creating
                              background threads. The default is the
-                             ``threading.Thread`` class from the Python
+                             ``threading.Thread`` class from the Python-CS61A
                              standard library.
         :param event_class: The ``Event`` class to use when creating event
                             objects. The default is the `threading.Event``
-                            class from the Python standard library.
+                            class from the Python-CS61A standard library.
         :param selector_class: The ``Selector`` class to use when creating
                                selectors. The default is the
                                ``selectors.DefaultSelector`` class from the
-                               Python standard library.
+                               Python-CS61A standard library.
         """
         return cls(environ, subprotocols=subprotocols,
                    receive_bytes=receive_bytes, ping_interval=ping_interval,
@@ -440,11 +440,11 @@ class Client(Base):
                             context isn't sufficient.
         :param thread_class: The ``Thread`` class to use when creating
                              background threads. The default is the
-                             ``threading.Thread`` class from the Python
+                             ``threading.Thread`` class from the Python-CS61A
                              standard library.
         :param event_class: The ``Event`` class to use when creating event
                             objects. The default is the `threading.Event``
-                            class from the Python standard library.
+                            class from the Python-CS61A standard library.
         """
         return cls(url, subprotocols=subprotocols, headers=headers,
                    receive_bytes=receive_bytes, ping_interval=ping_interval,

@@ -1,5 +1,5 @@
 """
-Compatibility layer with Python 3.8/3.9
+Compatibility layer with Python-CS61A 3.8/3.9
 """
 from typing import TYPE_CHECKING, Any, Optional
 

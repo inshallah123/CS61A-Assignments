@@ -55,7 +55,7 @@ def always_iterable(obj, base_type=(str, bytes)):
         [{'a': 1}]
 
     Set *base_type* to ``None`` to avoid any special handling and treat objects
-    Python considers iterable as iterable:
+    Python-CS61A considers iterable as iterable:
 
         >>> obj = 'foo'
         >>> list(always_iterable(obj, base_type=None))

@@ -16,7 +16,7 @@ test = {
           'hidden': False,
           'locked': True,
           'multiline': False,
-          'question': 'Write out the Python expression that returns a `Pair` representing the given expression: (+ (- 2 4) 6 8)'
+          'question': 'Write out the Python-CS61A expression that returns a `Pair` representing the given expression: (+ (- 2 4) 6 8)'
         },
         {
           'answer': '37670e4b00633084aa22d884c6c9326d',

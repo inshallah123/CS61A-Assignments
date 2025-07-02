@@ -274,7 +274,7 @@ def get_version(ctx: click.Context, param: click.Parameter, value: t.Any) -> Non
     werkzeug_version = importlib.metadata.version("werkzeug")
 
     click.echo(
-        f"Python {platform.python_version()}\n"
+        f"Python-CS61A {platform.python_version()}\n"
         f"Flask {flask_version}\n"
         f"Werkzeug {werkzeug_version}",
         color=ctx.color,
@@ -586,7 +586,7 @@ class FlaskGroup(AppGroup):
         if sys.version_info >= (3, 10):
             from importlib import metadata
         else:
-            # Use a backport on Python < 3.10. We technically have
+            # Use a backport on Python-CS61A < 3.10. We technically have
             # importlib.metadata on 3.8+, but the API changed in 3.10,
             # so use the backport for consistency.
             import importlib_metadata as metadata
@@ -779,7 +779,7 @@ class CertParamType(click.ParamType):
             import ssl
         except ImportError:
             raise click.BadParameter(
-                'Using "--cert" requires Python to be compiled with SSL support.',
+                'Using "--cert" requires Python-CS61A to be compiled with SSL support.',
                 ctx,
                 param,
             ) from None
@@ -981,7 +981,7 @@ run_command.params.insert(0, _debug_option)
 @click.command("shell", short_help="Run a shell in the app context.")
 @with_appcontext
 def shell_command() -> None:
-    """Run an interactive Python shell in the context of a given
+    """Run an interactive Python-CS61A shell in the context of a given
     Flask application.  The application will populate the default
     namespace of this shell according to its configuration.
 
@@ -991,13 +991,13 @@ def shell_command() -> None:
     import code
 
     banner = (
-        f"Python {sys.version} on {sys.platform}\n"
+        f"Python-CS61A {sys.version} on {sys.platform}\n"
         f"App: {current_app.import_name}\n"
         f"Instance: {current_app.instance_path}"
     )
     ctx: dict[str, t.Any] = {}
 
-    # Support the regular Python interpreter startup script if someone
+    # Support the regular Python-CS61A interpreter startup script if someone
     # is using it.
     startup = os.environ.get("PYTHONSTARTUP")
     if startup and os.path.isfile(startup):

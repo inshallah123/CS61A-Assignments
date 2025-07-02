@@ -1,4 +1,4 @@
-"""Compiles nodes from the parser into Python code."""
+"""Compiles nodes from the parser into Python-CS61A code."""
 import typing as t
 from contextlib import contextmanager
 from functools import update_wrapper

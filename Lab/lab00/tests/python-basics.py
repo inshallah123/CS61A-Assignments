@@ -1,5 +1,5 @@
 test = {
-  'name': 'Python Basics',
+  'name': 'Python-CS61A Basics',
   'points': 0,
   'suites': [
     {

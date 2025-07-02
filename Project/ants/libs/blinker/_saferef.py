@@ -1,5 +1,5 @@
 # extracted from Louie, http://pylouie.org/
-# updated for Python 3
+# updated for Python-CS61A 3
 #
 # Copyright (c) 2006 Patrick K. O'Brien, Mike C. Fletcher,
 #                    Matthew R. Scott

@@ -68,7 +68,7 @@ class Config(dict):  # type: ignore[type-arg]
         SECRET_KEY = 'development key'
         app.config.from_object(__name__)
 
-    In both cases (loading from any Python file or loading from modules),
+    In both cases (loading from any Python-CS61A file or loading from modules),
     only uppercase keys are added to the config.  This makes it possible to use
     lowercase values in the config file for temporary values that are not added
     to the config or to define the config keys in the same file that implements
@@ -166,7 +166,7 @@ class Config(dict):  # type: ignore[type-arg]
                 # Keep the value as a string if loading failed.
                 pass
 
-            # Change to key.removeprefix(prefix) on Python >= 3.9.
+            # Change to key.removeprefix(prefix) on Python-CS61A >= 3.9.
             key = key[len_prefix:]
 
             if "__" not in key:
@@ -192,7 +192,7 @@ class Config(dict):  # type: ignore[type-arg]
     def from_pyfile(
         self, filename: str | os.PathLike[str], silent: bool = False
     ) -> bool:
-        """Updates the values in the config from a Python file.  This function
+        """Updates the values in the config from a Python-CS61A file.  This function
         behaves as if the file was imported as module with the
         :meth:`from_object` function.
 

@@ -47,7 +47,7 @@ class AsyncClient(base_client.BaseClient):
 
     This class implements a fully compliant Engine.IO web client with support
     for websocket and long-polling transports, compatible with the asyncio
-    framework on Python 3.5 or newer.
+    framework on Python-CS61A 3.5 or newer.
 
     :param logger: To enable logging set to ``True`` or pass a logger object to
                    use. To disable logging set to ``False``. The default is

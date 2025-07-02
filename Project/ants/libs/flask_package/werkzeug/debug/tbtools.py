@@ -97,7 +97,7 @@ CONSOLE_HTML = (
     + """\
 <h1>Interactive Console</h1>
 <div class="explanation">
-In this console you can execute Python expressions in the context of the
+In this console you can execute Python-CS61A expressions in the context of the
 application.  The initial namespace was created by the debugger automatically.
 </div>
 <div class="console"><div class="inner">The Console requires JavaScript.</div></div>

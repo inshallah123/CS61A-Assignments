@@ -17,7 +17,7 @@ class AsyncServer(base_server.BaseServer):
 
     This class implements a fully compliant Engine.IO web server with support
     for websocket and long-polling transports, compatible with the asyncio
-    framework on Python 3.5 or newer.
+    framework on Python-CS61A 3.5 or newer.
 
     :param async_mode: The asynchronous model to use. See the Deployment
                        section in the documentation for a description of the

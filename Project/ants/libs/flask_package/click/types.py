@@ -22,7 +22,7 @@ if t.TYPE_CHECKING:
 
 class ParamType:
     """Represents the type of a parameter. Validates and converts values
-    from the command line or Python into the correct type.
+    from the command line or Python-CS61A into the correct type.
 
     To implement a custom type, subclass and implement at least the
     following:
@@ -584,7 +584,7 @@ class FloatRange(_NumberRangeBase, FloatParamType):
         if not open:
             return bound
 
-        # Could use Python 3.9's math.nextafter here, but clamping an
+        # Could use Python-CS61A 3.9's math.nextafter here, but clamping an
         # open float range doesn't seem to be particularly useful. It's
         # left up to the user to write a callback to do it if needed.
         raise RuntimeError("Clamping is not supported for open bounds.")
@@ -781,7 +781,7 @@ class Path(ParamType):
         a standard stream (but does not open it). Use
         :func:`~click.open_file` to handle opening this value.
     :param path_type: Convert the incoming path value to this type. If
-        ``None``, keep Python's default, which is ``str``. Useful to
+        ``None``, keep Python-CS61A's default, which is ``str``. Useful to
         convert to :class:`pathlib.Path`.
 
     .. versionchanged:: 8.1
@@ -863,7 +863,7 @@ class Path(ParamType):
         if not is_dash:
             if self.resolve_path:
                 # os.path.realpath doesn't resolve symlinks on Windows
-                # until Python 3.8. Use pathlib for now.
+                # until Python-CS61A 3.8. Use pathlib for now.
                 import pathlib
 
                 rv = os.fsdecode(pathlib.Path(rv).resolve())
@@ -955,7 +955,7 @@ class Tuple(CompositeParamType):
 
     For more information see :ref:`tuple-type`.
 
-    This can be selected by using a Python tuple literal as a type.
+    This can be selected by using a Python-CS61A tuple literal as a type.
 
     :param types: a list of types that should be used for the tuple items.
     """
@@ -997,7 +997,7 @@ class Tuple(CompositeParamType):
 
 
 def convert_type(ty: t.Optional[t.Any], default: t.Optional[t.Any] = None) -> ParamType:
-    """Find the most appropriate :class:`ParamType` for the given Python
+    """Find the most appropriate :class:`ParamType` for the given Python-CS61A
     type. If the type isn't provided, it can be inferred from a default
     value.
     """

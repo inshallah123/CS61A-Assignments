@@ -64,7 +64,7 @@ test = {
           (Choose all that apply)
           
           I.   User-defined procedures open a new frame; builtins do not
-          II.  Builtins simply execute a predefined Python function; user-defined
+          II.  Builtins simply execute a predefined Python-CS61A function; user-defined
                procedures must evaluate additional expressions in the body
           III. Builtins have a fixed number of arguments; user-defined procedures do not
           

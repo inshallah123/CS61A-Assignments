@@ -75,7 +75,7 @@ SEARCH_EXTRA_LENGTH = 8
 
 
 class MultipartDecoder:
-    """Decodes a multipart message as bytes into Python events.
+    """Decodes a multipart message as bytes into Python-CS61A events.
 
     The part data is returned as available to allow the caller to save
     the data from memory to disk, if desired.

@@ -83,7 +83,7 @@ class UnicodeConverter(BaseConverter):
 
 
 class AnyConverter(BaseConverter):
-    """Matches one of the items provided.  Items can either be Python
+    """Matches one of the items provided.  Items can either be Python-CS61A
     identifiers or strings::
 
         Rule('/<any(about, help, imprint, class, "foo,bar"):page_name>')

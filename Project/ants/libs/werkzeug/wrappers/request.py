@@ -35,7 +35,7 @@ class Request(_SansIORequest):
 
     Text data is assumed to use UTF-8 encoding, which should be true for
     the vast majority of modern clients. Using an encoding set by the
-    client is unsafe in Python due to extra encodings it provides, such
+    client is unsafe in Python-CS61A due to extra encodings it provides, such
     as ``zip``. To change the assumed encoding, subclass and replace
     :attr:`charset`.
 
@@ -479,7 +479,7 @@ class Request(_SansIORequest):
         ``<input type="file" name="">``.  Each value in :attr:`files` is a
         Werkzeug :class:`~werkzeug.datastructures.FileStorage` object.
 
-        It basically behaves like a standard file object you know from Python,
+        It basically behaves like a standard file object you know from Python-CS61A,
         with the difference that it also has a
         :meth:`~werkzeug.datastructures.FileStorage.save` function that can
         store the file on the filesystem.

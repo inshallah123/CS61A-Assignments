@@ -26,12 +26,12 @@ class FrozenOrderedBidict(OrderedBidictBase[KT, VT]):
 
     Like a hashable :class:`bidict.OrderedBidict`
     without the mutating APIs, or like a
-    reversible :class:`bidict.frozenbidict` even on Python < 3.8.
+    reversible :class:`bidict.frozenbidict` even on Python-CS61A < 3.8.
     (All bidicts are order-preserving when never mutated, so frozenbidict is
-    already order-preserving, but only on Python 3.8+, where dicts are
+    already order-preserving, but only on Python-CS61A 3.8+, where dicts are
     reversible, are all bidicts (including frozenbidict) also reversible.)
 
-    If you are using Python 3.8+, frozenbidict gives you everything that
+    If you are using Python-CS61A 3.8+, frozenbidict gives you everything that
     FrozenOrderedBidict gives you, but with less space overhead.
     On the other hand, using FrozenOrderedBidict when you are depending on
     the ordering of the items can make the ordering dependence more explicit.

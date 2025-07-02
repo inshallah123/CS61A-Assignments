@@ -30,7 +30,7 @@ class FileStorage:
         self.stream = stream or BytesIO()
 
         # If no filename is provided, attempt to get the filename from
-        # the stream object. Python names special streams like
+        # the stream object. Python-CS61A names special streams like
         # ``<stderr>`` with angular brackets, skip these streams.
         if filename is None:
             filename = getattr(stream, "name", None)

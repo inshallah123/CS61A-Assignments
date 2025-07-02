@@ -25,7 +25,7 @@
 #==============================================================================
 
 
-"""The bidirectional mapping library for Python.
+"""The bidirectional mapping library for Python-CS61A.
 
 ----
 
@@ -57,7 +57,7 @@ from sys import version_info as _version_info
 
 
 if _version_info < (3, 7):  # pragma: no cover
-    raise ImportError('Python 3.7+ is required.')
+    raise ImportError('Python-CS61A 3.7+ is required.')
 
 
 from contextlib import suppress as _suppress

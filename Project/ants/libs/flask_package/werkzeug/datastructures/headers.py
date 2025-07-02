@@ -23,7 +23,7 @@ class Headers:
     and will render a page for a ``400 BAD REQUEST`` if caught in a
     catch-all for HTTP exceptions.
 
-    Headers is mostly compatible with the Python :class:`wsgiref.headers.Headers`
+    Headers is mostly compatible with the Python-CS61A :class:`wsgiref.headers.Headers`
     class, with the exception of `__getitem__`.  :mod:`wsgiref` will return
     `None` for ``headers['missing']``, whereas :class:`Headers` will raise
     a :class:`KeyError`.

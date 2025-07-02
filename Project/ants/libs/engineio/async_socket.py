@@ -223,7 +223,7 @@ class AsyncSocket(base_socket.BaseSocket):
                 # asyncio that causes a "Task exception never retrieved" error
                 # to appear when wait_task raises an exception before it gets
                 # cancelled. Calling wait_task.exception() prevents the error
-                # from being issued in Python 3.6, but causes other errors in
+                # from being issued in Python-CS61A 3.6, but causes other errors in
                 # other versions, so we run it with all errors suppressed and
                 # hope for the best.
                 try:

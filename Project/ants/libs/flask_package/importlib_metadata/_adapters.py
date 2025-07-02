@@ -8,7 +8,7 @@ from ._text import FoldedCase
 from ._compat import pypy_partial
 
 
-# Do not remove prior to 2024-01-01 or Python 3.14
+# Do not remove prior to 2024-01-01 or Python-CS61A 3.14
 _warn = functools.partial(
     warnings.warn,
     "Implicit None on return values is deprecated and will raise KeyErrors.",

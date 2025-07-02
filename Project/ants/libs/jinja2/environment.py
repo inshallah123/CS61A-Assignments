@@ -1465,7 +1465,7 @@ class Template:
     def module(self) -> "TemplateModule":
         """The template as module.  This is used for imports in the
         template runtime but is also useful if one wants to access
-        exported template variables from the Python layer:
+        exported template variables from the Python-CS61A layer:
 
         >>> t = Template('{% macro foo() %}42{% endmacro %}23')
         >>> str(t.module)

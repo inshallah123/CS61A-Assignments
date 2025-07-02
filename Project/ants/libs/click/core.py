@@ -579,7 +579,7 @@ class Context:
         """Register a function to be called when the context tears down.
 
         This can be used to close resources opened during the script
-        execution. Resources that support Python's context manager
+        execution. Resources that support Python-CS61A's context manager
         protocol which would be used in a ``with`` statement should be
         registered with :meth:`with_resource` instead.
 
@@ -2021,7 +2021,7 @@ class Parameter:
                         argument.  This is a list of flags or argument
                         names.
     :param type: the type that should be used.  Either a :class:`ParamType`
-                 or a Python type.  The latter is converted into the former
+                 or a Python-CS61A type.  The latter is converted into the former
                  automatically if supported.
     :param required: controls if this is optional or not.
     :param default: the default value if omitted.  This can also be a callable,

@@ -410,7 +410,7 @@ def open_stream(
 
     # Atomic writes are more complicated.  They work by opening a file
     # as a proxy in the same folder and then using the fdopen
-    # functionality to wrap it in a Python file.  Then we wrap it in an
+    # functionality to wrap it in a Python-CS61A file.  Then we wrap it in an
     # atomic file that moves the file over on close.
     import errno
     import random

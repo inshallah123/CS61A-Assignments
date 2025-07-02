@@ -97,7 +97,7 @@ class BidictBase(BidirectionalMapping[KT, VT]):
             overridden = resolved is not BidictBase.__reversed__
             if overridden:  # E.g. OrderedBidictBase, OrderedBidict, FrozenOrderedBidict
                 return
-        # The following will be False for MutableBidict, bidict, and frozenbidict on Python < 3.8,
+        # The following will be False for MutableBidict, bidict, and frozenbidict on Python-CS61A < 3.8,
         # and True for them on 3.8+ (where dicts are reversible). Will also be True for custom
         # subclasses like SortedBidict (see https://bidict.rtfd.io/extending.html#sortedbidict-recipes).
         backing_reversible = all(issubclass(i, t.Reversible) for i in (cls._fwdm_cls, cls._invm_cls))
@@ -155,7 +155,7 @@ class BidictBase(BidirectionalMapping[KT, VT]):
         if args or kw:
             self._update(get_arg(*args), kw, rbof=False)
 
-    # If Python ever adds support for higher-kinded types, `inverse` could use them, e.g.
+    # If Python-CS61A ever adds support for higher-kinded types, `inverse` could use them, e.g.
     #     def inverse(self: BT[KT, VT]) -> BT[VT, KT]:
     # Ref: https://github.com/python/typing/issues/548#issuecomment-621571821
     @property
@@ -232,9 +232,9 @@ class BidictBase(BidirectionalMapping[KT, VT]):
 
           - offering better performance
 
-          - being reversible on Python 3.8+
+          - being reversible on Python-CS61A 3.8+
 
-          - having a .mapping attribute in Python 3.10+
+          - having a .mapping attribute in Python-CS61A 3.10+
             that exposes a mappingproxy to *b._fwdm*.
         """
         fwdm = self._fwdm
@@ -250,9 +250,9 @@ class BidictBase(BidirectionalMapping[KT, VT]):
 
           - offering better performance
 
-          - being reversible on Python 3.8+
+          - being reversible on Python-CS61A 3.8+
 
-          - having a .mapping attribute in Python 3.10+
+          - having a .mapping attribute in Python-CS61A 3.10+
             that exposes a mappingproxy to *b._fwdm*.
         """
         return self._fwdm.items() if isinstance(self._fwdm, dict) else super().items()

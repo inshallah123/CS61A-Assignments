@@ -15,7 +15,7 @@ test = {
           'hidden': False,
           'locked': True,
           'multiline': False,
-          'question': 'What is a decorator in Python?'
+          'question': 'What is a decorator in Python-CS61A?'
         },
         {
           'answer': 'b0d3e0af1a561c121fccba84d0661b3a',
@@ -28,7 +28,7 @@ test = {
           'hidden': False,
           'locked': True,
           'multiline': False,
-          'question': 'Why do we use decorators in Python?'
+          'question': 'Why do we use decorators in Python-CS61A?'
         },
         {
           'answer': '034e5b537c8688d20accd6b4855b563a',

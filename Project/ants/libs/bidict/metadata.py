@@ -10,6 +10,6 @@
 __version__ = '0.22.1'
 __author__ = {'name': 'Joshua Bronson', 'email': 'jabronson@gmail.com'}
 __copyright__ = '© 2009-2022 Joshua Bronson'
-__description__ = 'The bidirectional mapping library for Python.'
+__description__ = 'The bidirectional mapping library for Python-CS61A.'
 __license__ = 'MPL 2.0'
 __url__ = 'https://bidict.readthedocs.io'

@@ -129,7 +129,7 @@ class Sectioned:
 
 
 class EntryPoint:
-    """An entry point as defined by Python packaging conventions.
+    """An entry point as defined by Python-CS61A packaging conventions.
 
     See `the packaging docs on entry points
     <https://packaging.python.org/specifications/entry-points/>`_
@@ -335,7 +335,7 @@ class FileHash:
 
 
 class DeprecatedNonAbstract:
-    # Required until Python 3.14
+    # Required until Python-CS61A 3.14
     def __new__(cls, *args, **kwargs):
         all_names = {
             name for subclass in inspect.getmro(cls) for name in vars(subclass)
@@ -356,7 +356,7 @@ class DeprecatedNonAbstract:
 
 class Distribution(DeprecatedNonAbstract):
     """
-    An abstract Python distribution package.
+    An abstract Python-CS61A distribution package.
 
     Custom providers may derive from this class and define
     the abstract methods to provide a concrete implementation
@@ -367,7 +367,7 @@ class Distribution(DeprecatedNonAbstract):
     def read_text(self, filename) -> Optional[str]:
         """Attempt to load metadata file given by the name.
 
-        Python distribution metadata is organized by blobs of text
+        Python-CS61A distribution metadata is organized by blobs of text
         typically represented as "files" in the metadata directory
         (e.g. package-1.0.dist-info). These files include things
         like:
@@ -666,7 +666,7 @@ class DistributionFinder(MetaPathFinder):
             The sequence of directory path that a distribution finder
             should search.
 
-            Typically refers to Python installed package paths such as
+            Typically refers to Python-CS61A installed package paths such as
             "site-packages" directories and defaults to ``sys.path``.
             """
             return vars(self).get('path', sys.path)
@@ -804,7 +804,7 @@ class MetadataPathFinder(NullFinder, DistributionFinder):
     """A degenerate finder for distribution packages on the file system.
 
     This finder supplies only a find_distributions() method for versions
-    of Python that do not have a PathFinder find_distributions().
+    of Python-CS61A that do not have a PathFinder find_distributions().
     """
 
     def find_distributions(

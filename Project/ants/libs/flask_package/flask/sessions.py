@@ -20,7 +20,7 @@ if t.TYPE_CHECKING:  # pragma: no cover
     from .wrappers import Response
 
 
-# TODO generic when Python > 3.8
+# TODO generic when Python-CS61A > 3.8
 class SessionMixin(MutableMapping):  # type: ignore[type-arg]
     """Expands a basic dictionary with session attributes."""
 
@@ -49,7 +49,7 @@ class SessionMixin(MutableMapping):  # type: ignore[type-arg]
     accessed = True
 
 
-# TODO generic when Python > 3.8
+# TODO generic when Python-CS61A > 3.8
 class SecureCookieSession(CallbackDict, SessionMixin):  # type: ignore[type-arg]
     """Base class for sessions based on signed cookies.
 
@@ -291,7 +291,7 @@ class SecureCookieSessionInterface(SessionInterface):
     #: is hmac.
     key_derivation = "hmac"
     #: A python serializer for the payload.  The default is a compact
-    #: JSON derived serializer with support for some extra Python types
+    #: JSON derived serializer with support for some extra Python-CS61A types
     #: such as datetime objects or tuples.
     serializer = session_json_serializer
     session_class = SecureCookieSession

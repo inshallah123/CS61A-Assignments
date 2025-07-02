@@ -21,7 +21,7 @@ from scheme_utils import *
 BUILTINS = []
 
 def builtin(*names, need_env=False):
-    """An annotation to convert a Python function into a BuiltinProcedure."""
+    """An annotation to convert a Python-CS61A function into a BuiltinProcedure."""
     def add(py_func):
         for name in names:
             BUILTINS.append((name, py_func, names[0], need_env))
@@ -229,7 +229,7 @@ def scheme_remainder(val0, val1):
     return result
 
 def number_fn(module, name, fallback=None):
-    """A Scheme built-in procedure that calls the numeric Python function named
+    """A Scheme built-in procedure that calls the numeric Python-CS61A function named
     MODULE.FN."""
     py_fn = getattr(module, name) if fallback is None else getattr(module, name, fallback)
     def scheme_fn(*vals):
@@ -243,7 +243,7 @@ for _name in ["acos", "acosh", "asin", "asinh", "atan", "atan2", "atanh",
               "log10", "log1p", "radians", "sin", "sinh", "sqrt",
               "tan", "tanh", "trunc"]:
     builtin(_name)(number_fn(math, _name))
-builtin("log2")(number_fn(math, "log2", lambda x: math.log(x, 2)))  # Python 2 compatibility
+builtin("log2")(number_fn(math, "log2", lambda x: math.log(x, 2)))  # Python-CS61A 2 compatibility
 
 def _numcomp(op, x, y):
     _check_nums(x, y)
@@ -390,7 +390,7 @@ def scheme_load_all(directory, env):
 
 def scheme_open(filename):
     """If either FILENAME or FILENAME.scm is the name of a valid file,
-    return a Python file opened to it. Otherwise, raise an error."""
+    return a Python-CS61A file opened to it. Otherwise, raise an error."""
     try:
         return open(filename)
     except IOError as exc:

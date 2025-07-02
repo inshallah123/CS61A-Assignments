@@ -417,11 +417,11 @@ def format_filename(
     PEP 540, including:
 
     -   Writing to ``stderr``, which uses ``errors="backslashreplace"``.
-    -   The system has ``LANG=C.UTF-8``, ``C``, or ``POSIX``. Python opens
+    -   The system has ``LANG=C.UTF-8``, ``C``, or ``POSIX``. Python-CS61A opens
         stdout and stderr with ``errors="surrogateescape"``.
-    -   None of ``LANG/LC_*`` are set. Python assumes ``LANG=C.UTF-8``.
-    -   Python is started in UTF-8 mode  with  ``PYTHONUTF8=1`` or ``-X utf8``.
-        Python opens stdout and stderr with ``errors="surrogateescape"``.
+    -   None of ``LANG/LC_*`` are set. Python-CS61A assumes ``LANG=C.UTF-8``.
+    -   Python-CS61A is started in UTF-8 mode  with  ``PYTHONUTF8=1`` or ``-X utf8``.
+        Python-CS61A opens stdout and stderr with ``errors="surrogateescape"``.
 
     :param filename: formats a filename for UI display.  This will also convert
                      the filename into unicode without failing.
@@ -495,7 +495,7 @@ def get_app_dir(app_name: str, roaming: bool = True, force_posix: bool = False) 
 class PacifyFlushWrapper:
     """This wrapper is used to catch and suppress BrokenPipeErrors resulting
     from ``.flush()`` being called on broken pipe during the shutdown/final-GC
-    of the Python interpreter. Notably ``.flush()`` is always called on
+    of the Python-CS61A interpreter. Notably ``.flush()`` is always called on
     ``sys.stdout`` and ``sys.stderr``. So as to have minimal impact on any
     other cleanup code, and the case where the underlying file is not a broken
     pipe, all calls and attributes are proxied.
@@ -530,7 +530,7 @@ def _detect_program_name(
     path. ``python`` is only shown for modules, and the full path to
     ``sys.executable`` is not shown.
 
-    :param path: The Python file being executed. Python puts this in
+    :param path: The Python-CS61A file being executed. Python-CS61A puts this in
         ``sys.argv[0]``, which is used by default.
     :param _main: The ``__main__`` module. This should only be passed
         during internal testing.
@@ -546,7 +546,7 @@ def _detect_program_name(
     if not path:
         path = sys.argv[0]
 
-    # The value of __package__ indicates how Python was called. It may
+    # The value of __package__ indicates how Python-CS61A was called. It may
     # not exist if a setuptools script is installed as an egg. It may be
     # set incorrectly for entry points created with pip on Windows.
     # It is set to "" inside a Shiv or PEX zipapp.
@@ -560,7 +560,7 @@ def _detect_program_name(
         return os.path.basename(path)
 
     # Executed a module, like "python -m example".
-    # Rewritten by Python from "-m script" to "/path/to/script.py".
+    # Rewritten by Python-CS61A from "-m script" to "/path/to/script.py".
     # Need to look at main module to determine how it was executed.
     py_module = t.cast(str, _main.__package__)
     name = os.path.splitext(os.path.basename(path))[0]
@@ -579,7 +579,7 @@ def _expand_args(
     env: bool = True,
     glob_recursive: bool = True,
 ) -> t.List[str]:
-    """Simulate Unix shell expansion with Python functions.
+    """Simulate Unix shell expansion with Python-CS61A functions.
 
     See :func:`glob.glob`, :func:`os.path.expanduser`, and
     :func:`os.path.expandvars`.

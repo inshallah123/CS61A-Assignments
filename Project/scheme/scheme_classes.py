@@ -62,7 +62,7 @@ class Procedure:
     """The the base class for all Procedure classes."""
 
 class BuiltinProcedure(Procedure):
-    """A Scheme procedure defined as a Python function."""
+    """A Scheme procedure defined as a Python-CS61A function."""
 
     def __init__(self, py_func, need_env=False, name='builtin'):
         self.name = name

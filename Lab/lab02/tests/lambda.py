@@ -54,7 +54,7 @@ test = {
       'cases': [
         {
           'code': r"""
-          >>> # If Python displays <function...>, type Function, if it errors type Error, if it displays nothing type Nothing
+          >>> # If Python-CS61A displays <function...>, type Function, if it errors type Error, if it displays nothing type Nothing
           >>> lambda x: x  # A lambda expression with one parameter x
           4f02258d689b15b516174b381ad2aef8
           # locked

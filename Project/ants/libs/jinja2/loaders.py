@@ -82,7 +82,7 @@ class BaseLoader:
         The source part of the returned tuple must be the source of the
         template as a string. The filename should be the name of the
         file on the filesystem if it was loaded from there, otherwise
-        ``None``. The filename is used by Python for the tracebacks
+        ``None``. The filename is used by Python-CS61A for the tracebacks
         if no loader extension is used.
 
         The last item in the tuple is the `uptodate` function.  If auto
@@ -236,7 +236,7 @@ class FileSystemLoader(BaseLoader):
 
 
 class PackageLoader(BaseLoader):
-    """Load templates from a directory in a Python package.
+    """Load templates from a directory in a Python-CS61A package.
 
     :param package_name: Import name of the package that contains the
         template directory.
@@ -252,7 +252,7 @@ class PackageLoader(BaseLoader):
         loader = PackageLoader("project.ui", "pages")
 
     Only packages installed as directories (standard pip behavior) or
-    zip/egg files (less common) are supported. The Python API for
+    zip/egg files (less common) are supported. The Python-CS61A API for
     introspecting data in packages is too limited to support other
     installation methods the way this loader requires.
 
@@ -402,7 +402,7 @@ class PackageLoader(BaseLoader):
 
 
 class DictLoader(BaseLoader):
-    """Loads a template from a Python dict mapping template names to
+    """Loads a template from a Python-CS61A dict mapping template names to
     template source.  This loader is useful for unittesting:
 
     >>> loader = DictLoader({'index.html': 'source here'})

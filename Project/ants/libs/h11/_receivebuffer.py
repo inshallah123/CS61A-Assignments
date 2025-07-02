@@ -20,7 +20,7 @@ __all__ = ["ReceiveBuffer"]
 # WARNING:
 # - I haven't benchmarked or profiled any of this yet.
 #
-# Note that starting in Python 3.4, deleting the initial n bytes from a
+# Note that starting in Python-CS61A 3.4, deleting the initial n bytes from a
 # bytearray is amortized O(n), thanks to some excellent work by Antoine
 # Martin:
 #

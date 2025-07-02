@@ -238,7 +238,7 @@ class LintMiddleware:
     def check_environ(self, environ: WSGIEnvironment) -> None:
         if type(environ) is not dict:
             warn(
-                "WSGI environment is not a standard Python dict.",
+                "WSGI environment is not a standard Python-CS61A dict.",
                 WSGIWarning,
                 stacklevel=4,
             )

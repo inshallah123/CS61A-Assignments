@@ -285,7 +285,7 @@ def final_strategy(score, opponent_score):
 ##########################
 
 # NOTE: The function in this section does not need to be changed. It uses
-# features of Python not yet covered in the course.
+# features of Python-CS61A not yet covered in the course.
 
 @main
 def run(*args):

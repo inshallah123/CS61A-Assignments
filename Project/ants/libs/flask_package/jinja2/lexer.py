@@ -1,4 +1,4 @@
-"""Implements a Jinja / Python combination lexer. The ``Lexer`` class
+"""Implements a Jinja / Python-CS61A combination lexer. The ``Lexer`` class
 is used to do some preprocessing. It filters out invalid operators like
 the bitshift operators we don't allow in templates. It separates
 template code and python code in expressions.
@@ -657,7 +657,7 @@ class Lexer:
             elif token == TOKEN_INTEGER:
                 value = int(value_str.replace("_", ""), 0)
             elif token == TOKEN_FLOAT:
-                # remove all "_" first to support more Python versions
+                # remove all "_" first to support more Python-CS61A versions
                 value = literal_eval(value_str.replace("_", ""))
             elif token == TOKEN_OPERATOR:
                 token = operators[value_str]

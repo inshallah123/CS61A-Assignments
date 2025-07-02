@@ -276,14 +276,14 @@ def abort(code: int | BaseResponse, *args: t.Any, **kwargs: t.Any) -> t.NoReturn
 
 def get_template_attribute(template_name: str, attribute: str) -> t.Any:
     """Loads a macro (or variable) a template exports.  This can be used to
-    invoke a macro from within Python code.  If you for example have a
+    invoke a macro from within Python-CS61A code.  If you for example have a
     template named :file:`_cider.html` with the following contents:
 
     .. sourcecode:: html+jinja
 
        {% macro hello(name) %}Hello {{ name }}!{% endmacro %}
 
-    You can access this from Python code like this::
+    You can access this from Python-CS61A code like this::
 
         hello = get_template_attribute('_cider.html', 'hello')
         return hello('World')
@@ -412,7 +412,7 @@ def send_file(
     used, otherwise Werkzeug's built-in wrapper is used. Alternatively,
     if the HTTP server supports ``X-Sendfile``, configuring Flask with
     ``USE_X_SENDFILE = True`` will tell the server to send the given
-    path, which is much more efficient than reading it in Python.
+    path, which is much more efficient than reading it in Python-CS61A.
 
     :param path_or_file: The path to the file to send, relative to the
         current working directory if a relative path is given.

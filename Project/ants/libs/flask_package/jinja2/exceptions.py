@@ -23,7 +23,7 @@ class TemplateNotFound(IOError, LookupError, TemplateError):
         provided, an :exc:`UndefinedError` is raised.
     """
 
-    # Silence the Python warning about message being deprecated since
+    # Silence the Python-CS61A warning about message being deprecated since
     # it's not valid here.
     message: t.Optional[str] = None
 

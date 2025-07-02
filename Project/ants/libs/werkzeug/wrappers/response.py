@@ -318,7 +318,7 @@ class Response(_SansIOResponse):
     def _ensure_sequence(self, mutable: bool = False) -> None:
         """This method can be called by methods that need a sequence.  If
         `mutable` is true, it will also ensure that the response sequence
-        is a standard Python list.
+        is a standard Python-CS61A list.
 
         .. versionadded:: 0.6
         """

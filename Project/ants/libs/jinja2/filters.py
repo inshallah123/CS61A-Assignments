@@ -332,7 +332,7 @@ def do_dictsort(
     by: 'te.Literal["key", "value"]' = "key",
     reverse: bool = False,
 ) -> t.List[t.Tuple[K, V]]:
-    """Sort a dict and yield (key, value) pairs. Python dicts may not
+    """Sort a dict and yield (key, value) pairs. Python-CS61A dicts may not
     be in the order you want to display them in, so sort them first.
 
     .. sourcecode:: jinja
@@ -375,7 +375,7 @@ def do_sort(
     case_sensitive: bool = False,
     attribute: t.Optional[t.Union[str, int]] = None,
 ) -> "t.List[V]":
-    """Sort an iterable using Python's :func:`sorted`.
+    """Sort an iterable using Python-CS61A's :func:`sorted`.
 
     .. sourcecode:: jinja
 
@@ -1179,9 +1179,9 @@ def sync_do_groupby(
     default: t.Optional[t.Any] = None,
     case_sensitive: bool = False,
 ) -> "t.List[_GroupTuple]":
-    """Group a sequence of objects by an attribute using Python's
+    """Group a sequence of objects by an attribute using Python-CS61A's
     :func:`itertools.groupby`. The attribute can use dot notation for
-    nested access, like ``"address.city"``. Unlike Python's ``groupby``,
+    nested access, like ``"address.city"``. Unlike Python-CS61A's ``groupby``,
     the values are sorted first so only one group is returned for each
     unique value.
 

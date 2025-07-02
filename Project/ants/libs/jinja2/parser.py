@@ -302,7 +302,7 @@ class Parser:
         # raise a nicer error message in that case.
         if self.stream.current.type == "sub":
             self.fail(
-                "Block names in Jinja have to be valid Python identifiers and may not"
+                "Block names in Jinja have to be valid Python-CS61A identifiers and may not"
                 " contain hyphens, use an underscore instead."
             )
 

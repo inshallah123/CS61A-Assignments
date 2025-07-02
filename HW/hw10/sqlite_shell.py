@@ -2,7 +2,7 @@
 
 # Licensed under the MIT license
 
-# A simple SQLite shell that uses the built-in Python adapter.
+# A simple SQLite shell that uses the built-in Python-CS61A adapter.
 
 import codecs
 import io
@@ -177,7 +177,7 @@ class WindowsConsoleIOMixin(object):
 		if nr.value == 0 and error == ERROR_OPERATION_ABORTED:
 			# Apparently this can trigger pending KeyboardInterrupts?
 			time.sleep(1.0 / (1 << 64))
-			raise KeyboardInterrupt()  # If Python doesn't raise it, we can
+			raise KeyboardInterrupt()  # If Python-CS61A doesn't raise it, we can
 		return nr.value
 	def writewchars(self, buf, n):
 		nw = DWORD(n)
@@ -223,8 +223,8 @@ class WindowsConsoleTextIO(WindowsConsoleIOMixin, io.TextIOBase):
 			if chunk.startswith('\x1A'):  # EOF on Windows (Ctrl+Z) at the beginning of a line results in the entire rest of the buffer being discarded
 				iend = istart
 				break
-			# Python 2 and Python 3 behaviors differ on Windows... Python 2's sys.stdin.readline() just deletes the next character if it sees EOF in the middle of a string! I won't emulate that here.
-			self.buffered += chunk  # We're relying on Python's concatenation optimization here... we don't do it ourselves, since we want self.buffered to be valid every iteration in case there is an exception raised
+			# Python-CS61A 2 and Python-CS61A 3 behaviors differ on Windows... Python-CS61A 2's sys.stdin.readline() just deletes the next character if it sees EOF in the middle of a string! I won't emulate that here.
+			self.buffered += chunk  # We're relying on Python-CS61A's concatenation optimization here... we don't do it ourselves, since we want self.buffered to be valid every iteration in case there is an exception raised
 		result = self.buffered[:iend]
 		self.buffered = self.buffered[iend:]
 		return result
@@ -427,7 +427,7 @@ class StdIOProxy(object):
 	def error(self, *args, **kwargs): kwargs.setdefault('end', None); return self._writeln(self.streaminfos[2], self.codec, *args, **kwargs)
 	def errorln(self, *args, **kwargs): return self._writeln(self.streaminfos[2], self.codec, *args, **kwargs)
 
-class bytes_comparable_with_unicode(bytes):  # For Python 2/3 compatibility, to allow implicit conversion between strings and bytes when it is safe. (Used for strings like literals which we know be safe.)
+class bytes_comparable_with_unicode(bytes):  # For Python-CS61A 2/3 compatibility, to allow implicit conversion between strings and bytes when it is safe. (Used for strings like literals which we know be safe.)
 	codec = codecs.lookup('ascii')  # MUST be a safe encoding
 	@classmethod
 	def coerce(cls, other, for_output=False):
@@ -496,7 +496,7 @@ def main(program, *args, **kwargs):  # **kwargs = dict(stdin=file, stdout=file, 
 		stdin = wrap_windows_console_io(stdin, False)
 		stdout = wrap_windows_console_io(stdout, True)
 		stderr = wrap_windows_console_io(stderr, True)
-	allow_set_code_page = sys.version_info[0] < 3 and False  # This is only necessary on Python 2 if we use the default I/O functions instead of bypassing to ReadConsole()/WriteConsole()
+	allow_set_code_page = sys.version_info[0] < 3 and False  # This is only necessary on Python-CS61A 2 if we use the default I/O functions instead of bypassing to ReadConsole()/WriteConsole()
 	stdio = StdIOProxy(stdin, stdout, stderr, codec, allow_set_code_page)
 	db = None
 	no_args = len(args) == 0

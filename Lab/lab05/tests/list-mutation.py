@@ -6,7 +6,7 @@ test = {
       'cases': [
         {
           'code': r"""
-          >>> # If nothing would be output by Python, type Nothing
+          >>> # If nothing would be output by Python-CS61A, type Nothing
           >>> # If the code would error, type Error
           >>> s = [6, 7, 8]
           >>> print(s.append(6))

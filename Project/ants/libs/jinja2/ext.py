@@ -270,7 +270,7 @@ class InternationalizationExtension(Extension):
         self, translations: "_SupportedTranslations", newstyle: t.Optional[bool] = None
     ) -> None:
         # ugettext and ungettext are preferred in case the I18N library
-        # is providing compatibility with older Python versions.
+        # is providing compatibility with older Python-CS61A versions.
         gettext = getattr(translations, "ugettext", None)
         if gettext is None:
             gettext = translations.gettext
@@ -290,7 +290,7 @@ class InternationalizationExtension(Extension):
         translations = gettext.NullTranslations()
 
         if hasattr(translations, "pgettext"):
-            # Python < 3.8
+            # Python-CS61A < 3.8
             pgettext = translations.pgettext
         else:
 
@@ -684,7 +684,7 @@ def extract_from_ast(
 
     * ``lineno`` is the number of the line on which the string was found,
     * ``function`` is the name of the ``gettext`` function used (if the
-      string was extracted from embedded Python code), and
+      string was extracted from embedded Python-CS61A code), and
     *   ``message`` is the string, or a tuple of strings for functions
          with multiple string arguments.
 

@@ -54,7 +54,7 @@ class Local:
     def __init__(self, context_var: ContextVar[dict[str, t.Any]] | None = None) -> None:
         if context_var is None:
             # A ContextVar not created at global scope interferes with
-            # Python's garbage collection. However, a local only makes
+            # Python-CS61A's garbage collection. However, a local only makes
             # sense defined at the global scope as well, in which case
             # the GC issue doesn't seem relevant.
             context_var = ContextVar(f"werkzeug.Local<{id(self)}>.storage")
@@ -125,7 +125,7 @@ class LocalStack(t.Generic[T]):
     def __init__(self, context_var: ContextVar[list[T]] | None = None) -> None:
         if context_var is None:
             # A ContextVar not created at global scope interferes with
-            # Python's garbage collection. However, a local only makes
+            # Python-CS61A's garbage collection. However, a local only makes
             # sense defined at the global scope as well, in which case
             # the GC issue doesn't seem relevant.
             context_var = ContextVar(f"werkzeug.LocalStack<{id(self)}>.storage")
@@ -277,7 +277,7 @@ class _ProxyLookup:
         bind_f: t.Callable[[LocalProxy, t.Any], t.Callable] | None
 
         if hasattr(f, "__get__"):
-            # A Python function, can be turned into a bound method.
+            # A Python-CS61A function, can be turned into a bound method.
 
             def bind_f(instance: LocalProxy, obj: t.Any) -> t.Callable:
                 return f.__get__(obj, type(obj))  # type: ignore

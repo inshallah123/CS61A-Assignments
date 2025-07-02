@@ -66,8 +66,8 @@ def _find_stat_paths(
     extra_files: set[str], exclude_patterns: set[str]
 ) -> t.Iterable[str]:
     """Find paths for the stat reloader to watch. Returns imported
-    module files, Python files under non-system paths. Extra files and
-    Python files under extra directories can also be scanned.
+    module files, Python-CS61A files under non-system paths. Extra files and
+    Python-CS61A files under extra directories can also be scanned.
 
     System paths have to be excluded for efficiency. Non-system paths,
     such as a project root or ``sys.path.insert``, should be the paths
@@ -104,7 +104,7 @@ def _find_stat_paths(
                     paths.add(os.path.join(root, name))
 
             # Optimization: stop scanning a directory if neither it nor
-            # its parent contained Python files.
+            # its parent contained Python-CS61A files.
             if not (has_py or parent_has_py[os.path.dirname(root)]):
                 dirs.clear()
                 continue
@@ -169,8 +169,8 @@ def _get_args_for_reloading() -> list[str]:
     to execute it again in a new process.
     """
     if sys.version_info >= (3, 10):
-        # sys.orig_argv, added in Python 3.10, contains the exact args used to invoke
-        # Python. Still replace argv[0] with sys.executable for accuracy.
+        # sys.orig_argv, added in Python-CS61A 3.10, contains the exact args used to invoke
+        # Python-CS61A. Still replace argv[0] with sys.executable for accuracy.
         return [sys.executable, *sys.orig_argv[1:]]
 
     rv = [sys.executable]
@@ -179,7 +179,7 @@ def _get_args_for_reloading() -> list[str]:
     # Need to look at main module to determine how it was executed.
     __main__ = sys.modules["__main__"]
 
-    # The value of __package__ indicates how Python was called. It may
+    # The value of __package__ indicates how Python-CS61A was called. It may
     # not exist if a setuptools script is installed as an egg. It may be
     # set incorrectly for entry points created with pip on Windows.
     if getattr(__main__, "__package__", None) is None or (
@@ -207,7 +207,7 @@ def _get_args_for_reloading() -> list[str]:
     else:
         # Executed a module, like "python -m werkzeug.serving".
         if os.path.isfile(py_script):
-            # Rewritten by Python from "-m script" to "/path/to/script.py".
+            # Rewritten by Python-CS61A from "-m script" to "/path/to/script.py".
             py_module = t.cast(str, __main__.__package__)
             name = os.path.splitext(os.path.basename(py_script))[0]
 
@@ -262,7 +262,7 @@ class ReloaderLoop:
         pass
 
     def restart_with_reloader(self) -> int:
-        """Spawn a new Python interpreter with the same arguments as the
+        """Spawn a new Python-CS61A interpreter with the same arguments as the
         current one, but running the reloader thread.
         """
         while True:
@@ -332,8 +332,8 @@ class WatchdogReloaderLoop(ReloaderLoop):
 
         self.name = f"watchdog ({reloader_name})"
         self.observer = Observer()
-        # Extra patterns can be non-Python files, match them in addition
-        # to all Python files in default and extra directories. Ignore
+        # Extra patterns can be non-Python-CS61A files, match them in addition
+        # to all Python-CS61A files in default and extra directories. Ignore
         # __pycache__ since a change there will always have a change to
         # the source file (or initial pyc file) as well. Ignore Git and
         # Mercurial internal changes.
@@ -433,7 +433,7 @@ def run_with_reloader(
     interval: int | float = 1,
     reloader_type: str = "auto",
 ) -> None:
-    """Run the given function in an independent Python interpreter."""
+    """Run the given function in an independent Python-CS61A interpreter."""
     import signal
 
     signal.signal(signal.SIGTERM, lambda *args: sys.exit(0))

@@ -14,7 +14,7 @@ from .environment import Template
 
 
 def native_concat(values: t.Iterable[t.Any]) -> t.Optional[t.Any]:
-    """Return a native Python type from the list of compiled nodes. If
+    """Return a native Python-CS61A type from the list of compiled nodes. If
     the result is a single node, its value is returned. Otherwise, the
     nodes are concatenated as strings. If the result can be parsed with
     :func:`ast.literal_eval`, the parsed value is returned. Otherwise,
@@ -38,7 +38,7 @@ def native_concat(values: t.Iterable[t.Any]) -> t.Optional[t.Any]:
 
     try:
         return literal_eval(
-            # In Python 3.10+ ast.literal_eval removes leading spaces/tabs
+            # In Python-CS61A 3.10+ ast.literal_eval removes leading spaces/tabs
             # from the given string. For backwards compatibility we need to
             # parse the string ourselves without removing leading spaces/tabs.
             parse(raw, mode="eval")
@@ -48,7 +48,7 @@ def native_concat(values: t.Iterable[t.Any]) -> t.Optional[t.Any]:
 
 
 class NativeCodeGenerator(CodeGenerator):
-    """A code generator which renders Python types by not adding
+    """A code generator which renders Python-CS61A types by not adding
     ``str()`` around output nodes.
     """
 
@@ -86,7 +86,7 @@ class NativeCodeGenerator(CodeGenerator):
 
 
 class NativeEnvironment(Environment):
-    """An environment that renders templates to native Python types."""
+    """An environment that renders templates to native Python-CS61A types."""
 
     code_generator_class = NativeCodeGenerator
     concat = staticmethod(native_concat)  # type: ignore
@@ -96,7 +96,7 @@ class NativeTemplate(Template):
     environment_class = NativeEnvironment
 
     def render(self, *args: t.Any, **kwargs: t.Any) -> t.Any:
-        """Render the template to produce a native Python type. If the
+        """Render the template to produce a native Python-CS61A type. If the
         result is a single node, its value is returned. Otherwise, the
         nodes are concatenated as strings. If the result can be parsed
         with :func:`ast.literal_eval`, the parsed value is returned.

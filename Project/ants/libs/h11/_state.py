@@ -97,7 +97,7 @@
 # involve just the server and client state.
 #
 # The transitions for the other machines, and the state-triggered transitions
-# that involve the other machines, are written out as explicit Python code.
+# that involve the other machines, are written out as explicit Python-CS61A code.
 #
 # It'd be nice if there were some cleaner way to do all this. This isn't
 # *too* terrible, but I feel like it could probably be better.
@@ -108,7 +108,7 @@
 # The script that generates the state machine diagrams for the docs knows how
 # to read out the EVENT_TRIGGERED_TRANSITIONS and STATE_TRIGGERED_TRANSITIONS
 # tables. But it can't automatically read the transitions that are written
-# directly in Python code. So if you touch those, you need to also update the
+# directly in Python-CS61A code. So if you touch those, you need to also update the
 # script to keep it in sync!
 from typing import cast, Dict, Optional, Set, Tuple, Type, Union
 

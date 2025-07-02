@@ -710,7 +710,7 @@ def _endpoint_from_view_func(view_func: ft.RouteCallable) -> str:
 
 
 def _path_is_relative_to(path: pathlib.PurePath, base: str) -> bool:
-    # Path.is_relative_to doesn't exist until Python 3.9
+    # Path.is_relative_to doesn't exist until Python-CS61A 3.9
     try:
         path.relative_to(base)
         return True

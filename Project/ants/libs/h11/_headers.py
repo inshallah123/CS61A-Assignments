@@ -54,7 +54,7 @@ except ImportError:
 #
 # Given all this mess (case insensitive, duplicates allowed, order is
 # important, ...), there doesn't appear to be any standard way to handle
-# headers in Python -- they're almost like dicts, but... actually just
+# headers in Python-CS61A -- they're almost like dicts, but... actually just
 # aren't. For now we punt and just use a super simple representation: headers
 # are a list of pairs
 #

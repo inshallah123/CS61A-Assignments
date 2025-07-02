@@ -64,7 +64,7 @@ class SharedDataMiddleware:
         })
 
     This will then serve the ``static`` folder in the `myapplication`
-    Python package.
+    Python-CS61A package.
 
     The optional `disallow` parameter can be a list of :func:`~fnmatch.fnmatch`
     rules for files that are not accessible from the web.  If `cache` is set to
@@ -75,7 +75,7 @@ class SharedDataMiddleware:
     work but this could also be by accident. We strongly suggest using ASCII
     only file names for static files.
 
-    The middleware will guess the mimetype using the Python `mimetype`
+    The middleware will guess the mimetype using the Python-CS61A `mimetype`
     module.  If it's unable to figure out the charset it will fall back
     to `fallback_mimetype`.
 

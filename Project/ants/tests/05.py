@@ -48,7 +48,7 @@ test = {
             """,
             'Yes, you can mutate a list while iterating over it with no problems',
             r"""
-            No, Python doesn't allow list mutation on a list that is being
+            No, Python-CS61A doesn't allow list mutation on a list that is being
             iterated through
             """
           ],
