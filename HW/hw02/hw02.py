@@ -39,7 +39,7 @@ def product(n, term):
         k += 1
     return product
 
-def accumulate(fuse : Callable[[float], float], start, n, term):
+def accumulate(fuse, start, n, term):
     """Return the result of fusing together the first n terms in a sequence 
     and start.  The terms to be fused are term(1), term(2), ..., term(n). 
     The function fuse is a two-argument commutative & associative function.
@@ -59,7 +59,12 @@ def accumulate(fuse : Callable[[float], float], start, n, term):
     19
     """
     "*** YOUR CODE HERE ***"
-
+    k = 1
+    result = start
+    while k <= n:
+        result = fuse(result, term(k))
+        k += 1
+    return result
 
 def summation_using_accumulate(n, term):
     """Returns the sum: term(1) + ... + term(n), using accumulate.
