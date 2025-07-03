@@ -169,10 +169,10 @@ def play(strategy0, strategy1, update,
     # BEGIN PROBLEM 5
     "*** YOUR CODE HERE ***"
     while True:
-        score0 = update(strategy0, score0, score1, dice=dice)
+        score0 = update(strategy0(score0,score1), score0, score1, dice=dice)
         if score0 >= goal:
             break
-        score1 = update(strategy1, score1, score0, dice=dice)
+        score1 = update(strategy1(score1,score0), score1, score0, dice=dice)
         if score1 >= goal:
             break
     # END PROBLEM 5
