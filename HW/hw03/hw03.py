@@ -25,6 +25,10 @@ def num_eights(n):
     True
     """
     "*** YOUR CODE HERE ***"
+    if n < 10:
+        return 1 if n == 8 else 0
+
+    return num_eights(n // 10) + num_eights(n % 10) # 假设此函数可返回剩余位的8个数
 
 
 def digit_distance(n):
@@ -47,6 +51,10 @@ def digit_distance(n):
     True
     """
     "*** YOUR CODE HERE ***"
+    if n < 10:
+        return 0
+
+    return digit_distance(n // 10) + abs(n % 10 - (n // 10) % 10) # 假设递归调用返回剩余所有位之距离和
 
 
 def interleaved_sum(n, odd_func, even_func):
@@ -71,6 +79,13 @@ def interleaved_sum(n, odd_func, even_func):
     True
     """
     "*** YOUR CODE HERE ***"
+    # 信仰之跃： 我相信本递归调用可以将1~N-1的所有函数返回值正确求和。
+    # 需要处理： N-1→N的关系。
+    # 基线： 1
+    if n == 1:
+        return odd_func(1)
+
+    return interleaved_sum(n-1, odd_func, even_func) + even_func(n) if (n // 2) * 2 == n else interleaved_sum(n-1, odd_func, even_func) +odd_func(n)
 
 
 def next_smaller_dollar(bill):
@@ -107,6 +122,29 @@ def count_dollars(total):
     True
     """
     "*** YOUR CODE HERE ***"
+    # 分解total:
+    # 一是借助next smaller dollar构建，只需要计算total-next smaller dollar的way counts
+    # 二是不借助，则计算靠不大于next next smaller dollar所构建的total的way counts。这里设计一个辅助递归函数
+    # 该函数接受两个x,y入参，计算靠不大于y构造x的way counts.
+    if total == 1:
+        return 1
+
+    def sup_count(x,y): # 辅助函数，该函数计算以不大于y的钞票来构造x金额的方法数。
+        if x == 1:
+            return 1
+        if y == 1:
+            return 1 # 如果y递归到1元，只有1种方法来构造x，即x个y
+        if x < y:
+            return 0
+        if x == y:
+            return 1
+
+        return sup_count(x, next_smaller_dollar(y)) + count_dollars(x - y)
+
+    return count_dollars(total - next_smaller_dollar(total)) + sup_count(total, next_smaller_dollar(next_smaller_dollar(total)))
+
+
+
 
 
 def next_larger_dollar(bill):
