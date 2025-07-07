@@ -254,5 +254,16 @@ def make_anonymous_factorial():
     ...     ['Assign', 'AnnAssign', 'AugAssign', 'NamedExpr', 'FunctionDef', 'Recursion'])
     True
     """
-    return lambda f : lambda x : 1 if x == 0 else x * f (x - 1)(f)
-
+    return lambda n : (lambda g, n : 1 if n == 0 else n * g(g,n-1))(lambda g, n : 1 if n == 0 else n * g(g,n-1),n)
+"""
+匿名阶乘函数的推导
+1. 构造阶乘函数的递归一般式：
+f = lambda n : 1 if n == 0 else n * f(n-1)
+2. 去除f的名称。我们考虑修改lambda匿名函数，该函数接受一个递归求解阶乘的匿名函数（以g代替，其实也就是我们要的目标)和n的传入，并实现上述逻辑：
+lambda g, n : 1 if n == 0 else n * g(g,n-1)
+3. 令上式为K。则K的标准调用方式为K(K,n),这样就可以求出阶乘。注意，g和K实质是等价的。这一步是为了区分命名，避免读者混淆，方便我们进一步解耦。
+4. 关键一步：再设计一个匿名函数，该函数只接受参数n，但是返回对K的标准调用，即K（K，n),这样该函数实质上就是我们要的那个匿名阶乘函数，K，或者g（参考第2、3步）。
+5. 按照4的思路，开始进行变量替换的推导：
+lambda n : K(K,n)
+-> lambda n : (lambda g, n : 1 if n == 0 else n * g(g,n-1))（lambda g, n : 1 if n == 0 else n * g(g,n-1)，n)
+"""
