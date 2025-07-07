@@ -1,6 +1,5 @@
 HW_SOURCE_FILE = __file__
 
-
 def num_eights(n):
     """Returns the number of times 8 appears as a digit of n.
 
@@ -123,29 +122,23 @@ def count_dollars(total):
     """
     "*** YOUR CODE HERE ***"
     # 分解total:
-    # 一是借助next smaller dollar构建，只需要计算total-next smaller dollar的way counts
-    # 二是不借助，则计算靠不大于next next smaller dollar所构建的total的way counts。这里设计一个辅助递归函数
-    # 该函数接受两个x,y入参，计算靠不大于y构造x的way counts.
-    if total == 1:
-        return 1
+    def nearest_bill(amount,bills = 100): # 该递归函数可以小于amount的、返回距离amount最近的bill
+        if amount >= bills: # 需要加上等于条件，否则当amount = 1时，无法正常返回
+            return bills
+        bills = next_smaller_dollar(bills)
+        return nearest_bill(amount,bills)
 
-    def sup_count(x,y): # 辅助函数，该函数计算以不大于y的钞票来构造x金额的方法数。
-        if x == 1:
+    def count_sup(amount, bills):
+        """该递归函数可以计算出依靠不超过bills的金额构筑amount的方法数量。"""
+        if amount == 1 or amount == 0 or bills == 1:
             return 1
-        if y == 1:
-            return 1 # 如果y递归到1元，只有1种方法来构造x，即x个y
-        if x < y:
+        if amount < 0:
             return 0
-        if x == y:
-            return 1
 
-        return sup_count(x, next_smaller_dollar(y)) + count_dollars(x - y)
+        return count_sup(amount - bills, bills) + count_sup(amount, next_smaller_dollar(bills))
 
-    return count_dollars(total - next_smaller_dollar(total)) + sup_count(total, next_smaller_dollar(next_smaller_dollar(total)))
-
-
-
-
+    nearest= nearest_bill(total)
+    return count_sup(total, nearest)
 
 def next_larger_dollar(bill):
     """Returns the next larger bill in order."""
@@ -182,6 +175,26 @@ def count_dollars_upward(total):
     """
     "*** YOUR CODE HERE ***"
 
+    def nearest_bill(amount, bills=1):  # 该递归函数可以小于amount的、返回距离amount最近的bill
+        if amount >= bills:
+            if next_larger_dollar(bills) is None:
+                return bills
+            if amount < next_larger_dollar(bills):
+                return bills
+        bills = next_larger_dollar(bills)
+        return nearest_bill(amount, bills)
+
+    def count_sup(amount, bills):
+        """该递归函数可以计算出依靠不超过bills的金额构筑amount的方法数量。"""
+        if amount == 1 or amount == 0 or bills == 1:
+            return 1
+        if amount < 0:
+            return 0
+
+        return count_sup(amount - bills, bills) + count_sup(amount, next_smaller_dollar(bills))
+
+    nearest= nearest_bill(total)
+    return count_sup(total, nearest)
 
 def print_move(origin, destination):
     """Print instructions to move a disk."""
@@ -216,6 +229,16 @@ def move_stack(n, start, end):
     """
     assert 1 <= start <= 3 and 1 <= end <= 3 and start != end, "Bad start/end"
     "*** YOUR CODE HERE ***"
+    # 信仰之跃：假定move_stack函数可以打印出截至n个disk的全部移动路径。
+    if n == 1:
+        print_move(start, end)
+        return
+    other = 6 - start - end
+    move_stack(n - 1, start, other) # 将 n - 1个disk移动到过渡柱子
+    print_move(start, end) # 移动第n个disk
+    move_stack(n - 1, other, end) # 将 n - 1个disk移动到目标柱子
+
+
 
 
 from operator import sub, mul
@@ -231,5 +254,5 @@ def make_anonymous_factorial():
     ...     ['Assign', 'AnnAssign', 'AugAssign', 'NamedExpr', 'FunctionDef', 'Recursion'])
     True
     """
-    return 'YOUR_EXPRESSION_HERE'
+    return lambda f : lambda x : 1 if x == 0 else x * f (x - 1)(f)
 
