@@ -38,6 +38,13 @@ def pick(paragraphs, select, k):
     """
     # BEGIN PROBLEM 1
     "*** YOUR CODE HERE ***"
+    index = 0
+    for p in paragraphs:
+        if select(p):
+            if index == k:
+                return p
+            index += 1
+    return ""
     # END PROBLEM 1
 
 
@@ -58,6 +65,13 @@ def about(subject):
 
     # BEGIN PROBLEM 2
     "*** YOUR CODE HERE ***"
+    def check_match(p):
+        k = split(remove_punctuation(lower(p)))
+        for _ in k:
+            if _ in subject:
+                return True
+        return False
+    return check_match
     # END PROBLEM 2
 
 
@@ -66,7 +80,7 @@ def accuracy(typed, source):
     compared to the corresponding words in SOURCE.
 
     Arguments:
-        typed: a string that may contain typos
+        typed: a string that may contain typoes
         source: a model string without errors
 
     >>> accuracy('Cute Dog!', 'Cute Dog.')
@@ -84,10 +98,30 @@ def accuracy(typed, source):
     >>> accuracy('', '')
     100.0
     """
-    typed_words = split(typed)
-    source_words = split(source)
+    typed_words, type_len = split(typed), len(split(typed))
+    source_words, source_len = split(source), len(split(source))
     # BEGIN PROBLEM 3
     "*** YOUR CODE HERE ***"
+    correct = 0
+    if type_len == source_len:
+        if type_len == 0:
+            return 100.0
+        for i in range(type_len):
+            if typed_words[i] == source_words[i]:
+                correct += 1
+    elif type_len > source_len:
+        if source_len == 0:
+            return 0.0
+        for i in range(source_len):
+            if typed_words[i] == source_words[i]:
+                correct += 1
+    else:
+        if type_len == 0:
+            return 0.0
+        for i in range(type_len):
+            if typed_words[i] == source_words[i]:
+                correct += 1
+    return correct / type_len * 100
     # END PROBLEM 3
 
 
@@ -106,6 +140,8 @@ def wpm(typed, elapsed):
     assert elapsed > 0, "Elapsed time must be positive"
     # BEGIN PROBLEM 4
     "*** YOUR CODE HERE ***"
+    words = len(typed) / 5
+    return words / elapsed * 60
     # END PROBLEM 4
 
 
@@ -167,6 +203,21 @@ def autocorrect(typed_word, word_list, diff_function, limit):
     """
     # BEGIN PROBLEM 5
     "*** YOUR CODE HERE ***"
+    if typed_word in word_list:
+        return typed_word
+    else:
+        smallest_diff, best_match = 0, None
+        for word in word_list:
+            diff = diff_function(typed_word, word, limit)
+            if diff == 0:
+                return word
+            if diff < smallest_diff or smallest_diff == 0:
+                smallest_diff = diff
+                best_match = word
+        if smallest_diff > limit:
+            return typed_word
+        else:
+            return best_match
     # END PROBLEM 5
 
 
@@ -193,7 +244,25 @@ def furry_fixes(typed, source, limit):
     5
     """
     # BEGIN PROBLEM 6
-    assert False, 'Remove this line'
+    if limit == 0:
+        return 1 if typed != source else 0
+
+    if len(typed) == 0:
+        if len(source) == 0:
+            return 0
+        if len(source) == 1:
+            return 1
+        else:
+            return len(source)
+
+    if len(source) == 0:
+        if len(typed) == 1:
+            return 1
+        else:
+            return len(typed)
+
+    return furry_fixes(typed[1:], source[1:], limit - 1) + 1 if typed[0] != source[0] else furry_fixes(typed[1:], source[1:], limit)
+    # 如果第一个字符不同，则剩余字符串最大可以容忍limit - 1的差异；否则，仍可以容忍limit的差异。
     # END PROBLEM 6
 
 
