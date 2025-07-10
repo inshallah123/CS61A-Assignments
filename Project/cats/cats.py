@@ -250,19 +250,14 @@ def furry_fixes(typed, source, limit):
     if len(typed) == 0:
         if len(source) == 0:
             return 0
-        if len(source) == 1:
-            return 1
         else:
             return len(source)
 
     if len(source) == 0:
-        if len(typed) == 1:
-            return 1
-        else:
-            return len(typed)
+        return len(typed)
 
     return furry_fixes(typed[1:], source[1:], limit - 1) + 1 if typed[0] != source[0] else furry_fixes(typed[1:], source[1:], limit)
-    # 如果第一个字符不同，则剩余字符串最大可以容忍limit - 1的差异；否则，仍可以容忍limit的差异。
+    # 如果剩余字符串的第一个字符不同，则剩余字符串最大可以容忍limit - 1的差异；否则，仍可以容忍limit的差异。
     # END PROBLEM 6
 
 
@@ -283,23 +278,7 @@ def minimum_mewtations(typed, source, limit):
     >>> minimum_mewtations("ckiteus", "kittens", big_limit) # ckiteus -> kiteus -> kitteus -> kittens
     3
     """
-    assert False, 'Remove this line'
-    if ___________: # Base cases should go here, you may add more base cases as needed.
-        # BEGIN
-        "*** YOUR CODE HERE ***"
-        # END
-    # Recursive cases should go below here
-    if ___________: # Feel free to remove or add additional cases
-        # BEGIN
-        "*** YOUR CODE HERE ***"
-        # END
-    else:
-        add = ... # Fill in these lines
-        remove = ...
-        substitute = ...
-        # BEGIN
-        "*** YOUR CODE HERE ***"
-        # END
+
 
 
 # Ignore the line below
