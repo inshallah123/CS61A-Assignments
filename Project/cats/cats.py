@@ -278,6 +278,27 @@ def minimum_mewtations(typed, source, limit):
     >>> minimum_mewtations("ckiteus", "kittens", big_limit) # ckiteus -> kiteus -> kitteus -> kittens
     3
     """
+    if limit == 0:
+        return 1 if typed != source else 0
+
+    if len(typed) == 0:
+        if len(source) == 0:
+            return 0
+        else:
+            return len(source)
+
+    if len(source) == 0:
+        return len(typed)
+
+    if typed[0] != source[0]:
+        return min(
+            (1 + minimum_mewtations(typed, source[1:], limit - 1)),  # 增加首字符
+            (1 + minimum_mewtations(typed[1:], source, limit - 1)),  # 移除首字符
+            (1 + minimum_mewtations(typed[1:], source[1:], limit - 1)),  # 替换首字符
+        )
+    else:
+        return minimum_mewtations(typed[1:], source[1:], limit)
+
 
 
 
@@ -324,6 +345,15 @@ def report_progress(typed, source, user_id, upload):
     """
     # BEGIN PROBLEM 8
     "*** YOUR CODE HERE ***"
+    correct = 0
+    for i in range(len(typed)):
+        if typed[i] != source[i]:
+            break
+        else:
+            correct += 1
+    progress = correct / len(source)
+    upload({'id': user_id, 'progress': progress})
+    return progress
     # END PROBLEM 8
 
 
@@ -349,6 +379,11 @@ def time_per_word(words, timestamps_per_player):
     # BEGIN PROBLEM 9
     times = []  # You may remove this line
     # END PROBLEM 9
+    for timestamps in tpp:
+        k = []
+        for t in range(len(timestamps) - 1):
+            k.append(timestamps[t + 1] - timestamps[t])
+        times.append(k)
     return {'words': words, 'times': times}
 
 
@@ -373,9 +408,25 @@ def fastest_words(words_and_times):
     words, times = words_and_times['words'], words_and_times['times']
     player_indices = range(len(times))  # contains an *index* for each player
     word_indices = range(len(words))    # contains an *index* for each word
-    # BEGIN PROBLEM 10
-    "*** YOUR CODE HERE ***"
-    # END PROBLEM 10
+    player_result = [] # 存储结果
+    ith_word_fastest_player_index = []
+    iwfpi = ith_word_fastest_player_index
+    for i in word_indices:
+        temp = 0  # 存储第i个word打得最快的玩家的索引
+        for j in player_indices:
+            if get_time(times, j, i) < get_time(times, temp, i):
+                temp = j
+        iwfpi.append(temp)
+    # 完成该循环后，iwfpi 列表中依次存储每个word打得最快的玩家的索引
+    for x in player_indices:
+        player_result.append([])
+        for y in range(len(iwfpi)):
+        # 遍历iwfpi列表，内容是每个词语最快玩家的索引。y与words列表长度相同。
+        # x == iwfpi[y]说明，iwfpi中存储的第y个词的最快玩家索引与x匹配。
+        # 因此，第x个玩家的结果列表中应该加入第y个word。
+            if x == iwfpi[y]:
+                player_result[x].append(words[y])
+    return player_result
 
 
 def check_words_and_times(words_and_times):
