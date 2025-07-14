@@ -158,11 +158,6 @@ def sprout_leaves(t, leaves):
         return tree(label(t), [tree(leaf) for leaf in leaves])
     return tree(label(t), [sprout_leaves(b, leaves) for b in branches(t)])
 
-    for b in branches(t):
-        sprout_leaves(b, leaves)
-
-    return t
-
 
 
 def partial_reverse(s, start):
