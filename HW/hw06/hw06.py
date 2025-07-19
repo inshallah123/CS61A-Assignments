@@ -1,4 +1,4 @@
-passphrase = 'REPLACE_THIS_WITH_PASSPHRASE'
+passphrase = 'skip this question'
 
 def midsem_survey(p):
     """
@@ -50,6 +50,11 @@ class VendingMachine:
     def __init__(self, product, price):
         """Set the product and its price, as well as other instance attributes."""
         "*** YOUR CODE HERE ***"
+        self.product = product
+        self.price = price
+        self.stock = 0
+        self.funds = 0
+        self.change = 0
 
     def restock(self, n):
         """Add n to the stock and return a message about the updated stock level.
@@ -57,6 +62,8 @@ class VendingMachine:
         E.g., Current candy stock: 3
         """
         "*** YOUR CODE HERE ***"
+        self.stock += n
+        return f"Current {self.product} stock: {self.stock}"
 
     def add_funds(self, n):
         """If the machine is out of stock, return a message informing the user to restock
@@ -69,6 +76,11 @@ class VendingMachine:
         E.g., Current balance: $4
         """
         "*** YOUR CODE HERE ***"
+        if self.stock == 0:
+            return f"Nothing left to vend. Please restock. Here is your ${n}."
+        else:
+            self.funds += n
+            return f"Current balance: ${self.funds}"
 
     def vend(self):
         """Dispense the product if there is sufficient stock and funds and
@@ -82,6 +94,15 @@ class VendingMachine:
               Please add $3 more funds.
         """
         "*** YOUR CODE HERE ***"
+        if self.stock == 0:
+            return f"Nothing left to vend. Please restock."
+        elif self.funds < self.price:
+            return f"Please add ${self.price - self.funds} more funds."
+        else:
+            self.stock -= 1
+            self.change = self.funds - self.price
+            self.funds = 0
+            return f"Here is your {self.product} and ${self.change} change." if self.change else f"Here is your {self.product}."
 
 
 def store_digits(n):
@@ -104,6 +125,15 @@ def store_digits(n):
     >>> print("Do not use str or reversed!") if any([r in cleaned for r in ["str", "reversed"]]) else None
     """
     "*** YOUR CODE HERE ***"
+    result = Link.empty
+    while n > 0:
+        result = Link(n % 10, result)
+        n //= 10
+    return result
+
+
+
+
 
 
 def deep_map_mut(func, s):
@@ -126,6 +156,19 @@ def deep_map_mut(func, s):
     <9 <16> 25 36>
     """
     "*** YOUR CODE HERE ***"
+    if s.rest is Link.empty:
+        if isinstance(s.first, Link):
+            deep_map_mut(func, s.first)
+        else:
+            s.first = func(s.first)
+        return None
+
+    if isinstance(s.first, Link):
+        deep_map_mut(func, s.first)
+    else:
+        s.first = func(s.first)
+    deep_map_mut(func, s.rest)
+    return None
 
 
 def two_list(vals, counts):
@@ -147,6 +190,39 @@ def two_list(vals, counts):
     Link(1, Link(1, Link(3, Link(3, Link(2)))))
     """
     "*** YOUR CODE HERE ***"
+    def build_head_link(x, y):
+        result = Link.empty
+        while y > 0:
+            result = Link(x, result)
+            y -= 1
+        return result
+
+    def get_tail(link):
+        """返回链表的尾部指针而不修改链表"""
+        if link is Link.empty:
+            return Link.empty
+        while link.rest is not Link.empty:
+            link = link.rest
+        return link
+
+    # 拼接两个链表
+    def concatenate(link1, link2):
+        """将link2拼接到link1的尾部"""
+        if link1 is Link.empty:
+            return link2
+        tail = get_tail(link1)
+        tail.rest = link2
+        return link1
+
+    if len(vals) == 1:
+        return build_head_link(vals[0], counts[0])
+
+    head = build_head_link(vals[0], counts[0])
+    rest = two_list(vals[1:], counts[1:])
+    return concatenate(head, rest)
+
+
+
 
 
 class Link:
