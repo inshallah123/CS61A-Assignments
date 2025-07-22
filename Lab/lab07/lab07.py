@@ -40,6 +40,15 @@ class Account:
         """Return the number of years until balance would grow to amount."""
         assert self.balance > 0 and amount > 0 and self.interest > 0
         "*** YOUR CODE HERE ***"
+        if amount < self.balance:
+            return 0
+        else:
+            year = 0
+            dummy_amount = self.balance
+            while amount > dummy_amount:
+                dummy_amount = dummy_amount * (1 + self.interest)
+                year += 1
+            return year
 
 
 class FreeChecking(Account):
@@ -70,6 +79,13 @@ class FreeChecking(Account):
     free_withdrawals = 2
 
     "*** YOUR CODE HERE ***"
+    def withdraw(self, amount):
+        if self.free_withdrawals:
+            self.free_withdrawals -= 1
+            return super().withdraw(amount)
+        else:
+            return super().withdraw(amount + self.withdraw_fee)
+
 
 
 def without(s, i):
@@ -86,6 +102,22 @@ def without(s, i):
     True
     """
     "*** YOUR CODE HERE ***"
+    if s is Link.empty:
+        return Link.empty
+
+    dummy = Link(None)  # 创建一个虚拟头节点
+    current = dummy
+    original = s
+    count = 0
+
+    while original is not Link.empty:
+        if count != i:
+            current.rest = Link(original.first)
+            current = current.rest
+        original = original.rest # 如果count == i，跳过链接步骤
+        count += 1
+
+    return dummy.rest
 
 
 def duplicate_link(s, val):
@@ -105,6 +137,13 @@ def duplicate_link(s, val):
     Link(1, Link(2, Link(2, Link(2, Link(2, Link(3))))))
     """
     "*** YOUR CODE HERE ***"
+    current = s
+    while current is not Link.empty:
+        if current.first == val:
+            current.rest = Link(val, current.rest)
+            current = current.rest
+        current = current.rest
+
 
 
 class Link:
