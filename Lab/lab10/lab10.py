@@ -79,6 +79,17 @@ def eval_and(expressions):
     True
     """
     "*** YOUR CODE HERE ***"
+    if expressions is nil:
+        return scheme_t
+    while expressions is not nil:
+        value = calc_eval(expressions.first)
+        if value is scheme_f:
+            return scheme_f
+        if expressions.rest is nil:
+            return value
+        expressions = expressions.rest
+    return None
+
 
 bindings = {}
 
@@ -98,6 +109,8 @@ def eval_define(expressions):
     2
     """
     "*** YOUR CODE HERE ***"
+    bindings[expressions.first] = calc_eval(expressions.rest.first)
+    return expressions.first
 
 OPERATORS = { "//": floor_div, "+": addition, "-": subtraction, "*": multiplication, "/": division }
 
