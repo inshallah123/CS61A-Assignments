@@ -96,10 +96,11 @@ def eval_all(expressions, env):
     # BEGIN PROBLEM 6
     if expressions is nil:
         return None
-    while expressions.rest is not nil:
-        expressions.first = scheme_eval(expressions.first, env)
-        expressions = expressions.rest
-    return scheme_eval(expressions.first, env)
+    current = expressions
+    while current.rest is not nil:
+        scheme_eval(current.first, env)
+        current = current.rest
+    return scheme_eval(current.first, env)
     # END PROBLEM 6
 
 

@@ -123,6 +123,14 @@ def do_and_form(expressions, env):
     """
     # BEGIN PROBLEM 12
     "*** YOUR CODE HERE ***"
+    current = expressions
+    if current is nil:
+        return True
+    while current.rest is not nil:
+        if not is_scheme_true(scheme_eval(current.first, env)):
+            return False
+        current = current.rest
+    return scheme_eval(current.first, env)
     # END PROBLEM 12
 
 def do_or_form(expressions, env):
@@ -141,6 +149,12 @@ def do_or_form(expressions, env):
     """
     # BEGIN PROBLEM 12
     "*** YOUR CODE HERE ***"
+    current = expressions
+    while current is not nil:
+        if is_scheme_true(scheme_eval(current.first, env)):
+            return scheme_eval(current.first, env)
+        current = current.rest
+    return False
     # END PROBLEM 12
 
 def do_cond_form(expressions, env):
@@ -161,8 +175,13 @@ def do_cond_form(expressions, env):
         if is_scheme_true(test):
             # BEGIN PROBLEM 13
             "*** YOUR CODE HERE ***"
+            if clause.rest is nil:
+                return test
+            else:
+                return eval_all(clause.rest, env)
             # END PROBLEM 13
         expressions = expressions.rest
+    return None
 
 def do_let_form(expressions, env):
     """Evaluate a let form.
@@ -182,9 +201,30 @@ def make_let_frame(bindings, env):
     and a Scheme expression."""
     if not scheme_listp(bindings):
         raise SchemeError('bad bindings list in let form')
-    names = vals = nil
     # BEGIN PROBLEM 14
     "*** YOUR CODE HERE ***"
+    names_py = []
+    vals_py = []
+    binding_curr = bindings
+    while binding_curr is not nil:
+        binding = binding_curr.first
+        validate_form(binding, 2, 2)
+        name = binding.first
+        if not scheme_symbolp(name):
+            raise SchemeError('bad symbol in let binding: {0}'.format(name))
+        if name in names_py:
+            raise SchemeError('duplicate identifier in let: {0}'.format(name))
+        names_py.append(name)
+        vals_py.append(scheme_eval(binding.rest.first, env))
+        binding_curr = binding_curr.rest
+
+    # Build Scheme lists from python lists
+    names = nil
+    for name in reversed(names_py):
+        names = Pair(name, names)
+    vals = nil
+    for val in reversed(vals_py):
+        vals = Pair(val, vals)
     # END PROBLEM 14
     return env.make_child_frame(names, vals)
 
